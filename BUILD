@@ -11,13 +11,13 @@ DEFAULT_EMSCRIPTEN_LINKOPTS = [
     # Closure compiler broken when using hermetic emsdk
     # "--closure 1",                      # Run the closure compiler
     "-s MALLOC=emmalloc",               # Switch to using the much smaller implementation
-    "-s ALLOW_MEMORY_GROWTH=0",         # Our example doesn't need memory growth
+    "-s ALLOW_MEMORY_GROWTH=1",         # Our example doesn't need memory growth
     "-s USE_PTHREADS=0",                # Disable pthreads
     "-s ASSERTIONS=0",                  # Turn off assertions
-    "-s EXPORT_ES6=1",                  # Export as es6 module, used for rollup
-    "-s MODULARIZE=1",                  # Allows us to manually invoke the initializatio of wasm
-    "-s EXPORT_NAME=createModule",      # Not used, but good to specify
-    "-s USE_ES6_IMPORT_META=0",         # Disable loading from import meta since we use rollup
+    #"-s EXPORT_ES6=1",                  # Export as es6 module, used for rollup
+    #"-s MODULARIZE=1",                  # Allows us to manually invoke the initializatio of wasm
+    #"-s EXPORT_NAME=createModule",      # Not used, but good to specify
+    #"-s USE_ES6_IMPORT_META=0",         # Disable loading from import meta since we use rollup
     "-s SINGLE_FILE=1",                 # Pack all webassembly into base64
     "-s DISABLE_EXCEPTION_CATCHING=1",  # Disable all exception catching
     "-s NODEJS_CATCH_EXIT=0",           # We don't have a 'main' so disable exit() catching
@@ -44,8 +44,9 @@ cc_binary(
     name = "validator",
     srcs = ["src/validator.cc"],
     deps = [
-        ":messages_cc_proto"
+        ":messages_cc_proto",
     ],
+    copts = ["--std=c++14"],
 )
 
 cc_library(
@@ -53,7 +54,8 @@ cc_library(
     srcs = ["src/messageComponent.cc"],
     hdrs = ["src/messageComponent.h"],
     deps = [
-        ":messages_cc_proto"
+        ":messages_cc_proto",
+        "@com_google_absl//absl/status",
     ],
 )
 
