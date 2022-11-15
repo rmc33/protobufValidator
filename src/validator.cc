@@ -12,8 +12,8 @@ int main(int argc, char* argv[]) {
     cout << "std=c++ version=" << __cplusplus << endl;
 
     const string test_msg = "{\"item\": []}";
-    google::protobuf::Message* message = new tutorial::MyMessageComponent;
-    absl::Status status = JsonStringToMessage(test_msg, message);
+    tutorial::MyMessageComponent message;
+    absl::Status status = JsonStringToMessage(test_msg, &message);
     if (status.ok()) {
         cout << "parse ok" << endl;
     }
