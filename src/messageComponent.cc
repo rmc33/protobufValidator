@@ -19,7 +19,7 @@ using google::protobuf::util::JsonPrintOptions;
                 return content;
             }
         }
-        return absl::StrCat("error", status.message());
+        return absl::StrCat("error: ", status.message());
     }
 
 } // namespace Validator
