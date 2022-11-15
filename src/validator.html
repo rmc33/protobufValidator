@@ -4,8 +4,10 @@
 <script type="text/javascript">
     var Module = {
         onRuntimeInitialized: function() {
-            console.log(Module.MessageComponent.Validate("{\"item\":[]}"));
-        }
+            const result = Module.MessageComponent.Validate("{\"item\":[]}");
+            console.log(result);
+        },
+        '_main': function() {}
     };
 </script>
 </html>
