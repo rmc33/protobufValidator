@@ -1,7 +1,11 @@
 <html>
 
 <script src="./hello-world-js.js"></script>
-<script>
-    console.log(Module.MessageComponent.Validate("{\"item\":[]}"));
+<script type="text/javascript">
+    var Module = {
+        onRuntimeInitialized: function() {
+            console.log(Module.MessageComponent.Validate("{\"item\":[]}"));
+        }
+    };
 </script>
 </html>

@@ -8,7 +8,6 @@ namespace Validator {
     class MessageComponent {
         public:
 
-
         static std::string Validate(const std::string &test_msg);
     };
 

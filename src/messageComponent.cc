@@ -8,7 +8,8 @@
 namespace Validator  {
 
     std::string MessageComponent::Validate(const std::string &test_msg) {
-        google::protobuf::Message* message = new tutorial::MyMessageComponent;
+        tutorial::MyMessageComponent m;
+        google::protobuf::Message* message = dynamic_cast<google::protobuf::Message*>(&m);
         absl::Status status = google::protobuf::util::JsonStringToMessage(test_msg, message);
         return absl::StrCat("", status.message());
     }

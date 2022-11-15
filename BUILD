@@ -11,7 +11,7 @@ DEFAULT_EMSCRIPTEN_LINKOPTS = [
     # Closure compiler broken when using hermetic emsdk
     # "--closure 1",                      # Run the closure compiler
     "-s MALLOC=emmalloc",               # Switch to using the much smaller implementation
-    "-s ALLOW_MEMORY_GROWTH=1",         # Our example doesn't need memory growth
+    "-s ALLOW_MEMORY_GROWTH=0",         # Our example doesn't need memory growth
     "-s USE_PTHREADS=0",                # Disable pthreads
     "-s ASSERTIONS=0",                  # Turn off assertions
     #"-s EXPORT_ES6=1",                  # Export as es6 module, used for rollup
@@ -62,13 +62,13 @@ cc_library(
 cc_binary(
     name = "hello-world-js.js",
     srcs = ["src/validator_wsam.cc"],
-    linkopts = DEFAULT_EMSCRIPTEN_LINKOPTS + ASMJS_LINKOPTS,
+    linkopts = DEFAULT_EMSCRIPTEN_LINKOPTS + WASM_LINKOPTS,
     deps = [
         ":messageComponent",
     ],
 )
 
 wasm_cc_binary(
-    name = "hello-world-js",
+    name = "wasm",
     cc_target = ":hello-world-js.js",
 )
