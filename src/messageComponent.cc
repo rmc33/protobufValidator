@@ -10,16 +10,19 @@ using google::protobuf::util::JsonStringToMessage;
 using google::protobuf::util::MessageToJsonString;
 using google::protobuf::util::JsonPrintOptions;
 
-    std::string MessageComponent::Validate(const std::string &test_msg) {
+    Response MessageComponent::Validate(const std::string &test_msg) {
         tutorial::MyMessageComponent m;
-        absl::Status status = google::protobuf::util::JsonStringToMessage(test_msg, &m);
+        absl::Status status = JsonStringToMessage(test_msg, &m);
+        Response response;
         if (status.ok()) {
             std::string content;
             if (MessageToJsonString(m, &content, JsonPrintOptions{}).ok()) {
-                return content;
+                response.entityJson = content;
+                return response;
             }
         }
-        return absl::StrCat("error: ", status.message());
+        response.errorMessage = std::string(status.message());
+        return response;
     }
 
 } // namespace Validator

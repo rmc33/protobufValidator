@@ -1,14 +1,18 @@
-#ifndef LIB_LOCAL_TIME_H_
-#define LIB_LOCAL_TIME_H_
+#ifndef LIB_MSG_COMPONENT_H_
+#define LIB_MSG_COMPONENT_H_
 
 #include <string>
 
 namespace Validator {
 
+    struct Response {
+        std::string errorMessage;
+        std::string entityJson;
+    };
+
     class MessageComponent {
         public:
-
-        static std::string Validate(const std::string &test_msg);
+        static Response Validate(const std::string &test_msg);
     };
 
 } // namespace Validator

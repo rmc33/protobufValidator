@@ -60,7 +60,7 @@ cc_library(
 )
 
 cc_binary(
-    name = "hello-world-js.js",
+    name = "lib.js",
     srcs = ["src/validator_wsam.cc"],
     linkopts = DEFAULT_EMSCRIPTEN_LINKOPTS + WASM_LINKOPTS,
     deps = [
@@ -70,5 +70,5 @@ cc_binary(
 
 wasm_cc_binary(
     name = "wasm",
-    cc_target = ":hello-world-js.js",
+    cc_target = ":lib.js",
 )
