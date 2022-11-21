@@ -15,9 +15,9 @@ for index, entity in enumerate(feed["data"]):
         errors.append("data[%d] error: %s \n" %(index,err))
 
 if len(errors):
-    print("Errors:\n"+"".join(errors))
+    print("Errors:\n","".join(errors))
 else:
-    print("Result:\n"+json.dumps(result))
+    print("Result:\n",json.dumps(result))
 
     
 
