@@ -9,6 +9,11 @@ py_proto_library(
 py_binary(
   name = "validator",
   srcs = ["validator.py"],
-  deps = [":py_proto_library"]
+  deps = [":py_proto_library"],
+  data = [":examples_data"]
 )
 
+filegroup(
+    name = "examples_data",
+    srcs = glob(['*.json'])
+)
