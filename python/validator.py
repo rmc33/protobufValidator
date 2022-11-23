@@ -1,5 +1,7 @@
-from messages_pb2 import MyMessageComponent
-from google.protobuf.json_format import ParseDict, MessageToDict, ParseError
+import messages_pb2
+from google.protobuf.json_format import ParseDict
+from google.protobuf.json_format import MessageToDict
+from google.protobuf.json_format import ParseError
 import json
 
 feed_file = open('myfile.json', 'r')
@@ -9,13 +11,13 @@ result = {'data':[]}
 
 for index, entity in enumerate(feed['data']):
     try:
-        message: MyMessageComponent = ParseDict(entity, MyMessageComponent())
+        message = ParseDict(entity, messages_pb2.MyMessageComponent())
         result['data'].append(MessageToDict(message, preserving_proto_field_name=True))
     except ParseError as err:
-        errors.append('data[%d] error: %s \n' %(index,err))
+        errors.append('data[%d] error: %s' %(index,err))
 
-if len(errors) > 0:
-    print('Errors:\n',''.join(errors))
+if errors:
+    print('Errors:\n','\n'.join(errors))
 else:
     print('Result:\n',json.dumps(result))
 

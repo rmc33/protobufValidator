@@ -72,3 +72,5 @@ wasm_cc_binary(
     name = "wasm",
     cc_target = ":lib.js",
 )
+
+    
