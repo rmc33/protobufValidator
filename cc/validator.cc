@@ -3,9 +3,9 @@
 #include <google/protobuf/util/json_util.h>
 #include "messages.pb.h"
 #include "google/protobuf/message.h"
-#include "absl/status/status.h"
 
 using google::protobuf::util::JsonStringToMessage;
+using google::protobuf::util::Status;
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
     const string test_msg = "{\"item\": []}";
     tutorial::MyMessageComponent message;
-    absl::Status status = JsonStringToMessage(test_msg, &message);
+    Status status = JsonStringToMessage(test_msg, &message);
     if (status.ok()) {
         cout << "parse ok" << endl;
     }

@@ -1,0 +1,1 @@
+build --cxxopt=-std=c++14  --copt="-Wno-error=unused-function" --copt="-Wno-error=deprecated-non-prototype"

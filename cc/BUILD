@@ -1,5 +1,4 @@
 load("@rules_cc//cc:defs.bzl", "cc_proto_library")
-
 load("@emsdk//emscripten_toolchain:wasm_rules.bzl", "wasm_cc_binary")
 
 package(default_visibility = ["//visibility:public"])
@@ -44,7 +43,7 @@ cc_binary(
     name = "validator",
     srcs = ["validator.cc"],
     deps = [
-        ":messages_cc_proto",
+        ":messages_cc_proto"
     ],
     copts = ["--std=c++14"],
 )
@@ -55,7 +54,7 @@ cc_library(
     hdrs = ["messageComponent.h"],
     deps = [
         ":messages_cc_proto",
-        "@com_google_absl//absl/status",
+#        "@com_google_absl//absl/status",
     ],
 )
 
